@@ -11,5 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js').version()
+   .js('resources/assets/js/frontend/frontend.js', 'public/js').version()
+   .js('resources/assets/js/meal/meal.js', 'public/js').version()
+   .js('resources/assets/js/dashboard/dashboard.js', 'public/js').version()
+   .js('resources/assets/js/expense/expense.js', 'public/js').version()
+   .js('resources/assets/js/deposit/deposit.js', 'public/js').version()
+   .sass('resources/assets/sass/app.scss', 'public/css').version();

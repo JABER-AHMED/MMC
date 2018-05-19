@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Deposit\Traits;
+namespace App\Models\Expense\Traits;
 
 use App\User;
 
-class ExpenseRelations
+trait ExpenseRelations
 {
      public function user()
     {

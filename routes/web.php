@@ -17,4 +17,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
+Route::group([
+    // 'namespace' => '\frontend',
+    'middleware' => 'auth'
+], function() {
+    include_once 'frontend/home.php';
+
+});
+
+Route::group([
+    'namespace' => '\frontend',
+    'middleware' => 'auth'
+], function() {
+    include_once 'frontend/meal.php';
+
+});
+
+Route::group([
+    'namespace' => '\backend',
+    'middleware' => 'auth'
+], function() {
+    include_once 'Backend/expense.php';
+    include_once 'Backend/deposit.php';
+    include_once 'Backend/meal.php';
+
+});

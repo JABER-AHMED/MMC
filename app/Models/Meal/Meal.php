@@ -3,7 +3,7 @@
 namespace App\Models\Meal;
 
 use App\Models\BaseModel\BaseModel;
-use App\Models\Advert\Traits\MealRelations;
+use App\Models\Meal\Traits\MealRelations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Meal extends BaseModel

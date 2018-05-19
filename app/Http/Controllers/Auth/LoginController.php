@@ -40,9 +40,10 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
     {
         if($user->role === 1) {
-            return 'hello';
+            return redirect('/dashboard');
         }
-
-        return redirect('/home');
+        else if($user->role == 0){
+            return redirect('/home');
+        }
     }
 }

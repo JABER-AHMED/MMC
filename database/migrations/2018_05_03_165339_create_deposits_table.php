@@ -17,6 +17,11 @@ class CreateDepositsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->integer('amount');
+            $table->integer('house_rent')->nullable();
+            $table->integer('maid_cost')->nullable();
+            $table->integer('internet_cost')->nullable();
+            $table->integer('electricity_cost')->nullable();
+            $table->integer('establishment_cost')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
