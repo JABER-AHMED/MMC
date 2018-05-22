@@ -23,6 +23,11 @@ export default new VueRouter({
                     name: 'deposit.list',
                     component: view
                 },
+                {
+                   path: '/edit/:depositId',
+                   name: 'deposit.edit',
+                   component: save
+                },
             ]
         }
     ]

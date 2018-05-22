@@ -52,4 +52,15 @@ class MealController extends Controller
         }
         return abort(404);
     }
+
+    public function edit()
+    {
+        if ($this->request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'meal' => $this->model->find($this->request->id)
+            ]);
+        }
+        return abort(404);
+    }
 }

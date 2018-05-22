@@ -111,6 +111,9 @@
 			}
 		},
 		mounted () {
+			if (this.$route.params.depositId) {
+				this.edit(this.$route.params.depositId);
+			}
 			const URL = 'http://127.0.0.1:8000/deposit/user/list';
 			axios.get(URL, this.data)
 			.then((response) => {
@@ -145,6 +148,21 @@
 			    .catch((err) => {
 			        console.log(err.response.data);
 			    })
+			},
+			edit(id) {
+				// this.pleaseWaitLoading();
+				axios.get('http://127.0.0.1:8000/deposit/list/' + id)
+				.then((response) => {
+					this.data = response.data.deposit;
+					this.user = response.data.expense.user;
+	                // this.$loading().close();
+	                console.log(this.user);
+	                
+				})
+				.catch((error) => {
+					console.log(error.response.data);
+					// this.$loading().close();
+				})
 			}
 		}
 	}

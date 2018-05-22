@@ -1806,6 +1806,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		var _this = this;
 
+		if (this.$route.params.depositId) {
+			this.edit(this.$route.params.depositId);
+		}
 		var URL = 'http://127.0.0.1:8000/deposit/user/list';
 		axios.get(URL, this.data).then(function (response) {
 			_this.user = response.data;
@@ -1838,6 +1841,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				});
 			}).catch(function (err) {
 				console.log(err.response.data);
+			});
+		},
+		edit: function edit(id) {
+			var _this3 = this;
+
+			// this.pleaseWaitLoading();
+			axios.get('http://127.0.0.1:8000/deposit/list/' + id).then(function (response) {
+				_this3.data = response.data.deposit;
+				_this3.user = response.data.expense.user;
+				// this.$loading().close();
+				console.log(_this3.user);
+			}).catch(function (error) {
+				console.log(error.response.data);
+				// this.$loading().close();
 			});
 		}
 	}
@@ -2033,6 +2050,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			deposit: []
 		};
 	},
+
+	methods: {
+		update: function update() {
+			var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+			if (id) {
+				return this.$router.push({
+					'name': 'deposit.edit',
+					'params': {
+						'depositId': id,
+						'type': this.type
+					}
+				});
+			}
+			return this.$router.push({
+				name: 'deposit.create'
+			});
+		}
+	},
 	mounted: function mounted() {
 		var _this = this;
 
@@ -2085,7 +2121,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3067,7 +3103,54 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(3, true)
+                      _c(
+                        "td",
+                        {
+                          staticClass: "m-datatable__cell",
+                          attrs: { "data-field": "Actions" }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                overflow: "visible",
+                                width: "110px"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "dropdown " }, [
+                                _vm._m(3, true),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "dropdown-menu dropdown-menu-right"
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "dropdown-item",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.update(item.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", { staticClass: "la la-edit" }),
+                                        _vm._v("Edit Details")
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ]
+                      )
                     ]
                   )
                 })
@@ -3285,29 +3368,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "td",
-      { staticClass: "m-datatable__cell", attrs: { "data-field": "Actions" } },
-      [
-        _c("span", { staticStyle: { overflow: "visible", width: "110px" } }, [
-          _c("div", { staticClass: "dropdown " }, [
-            _c(
-              "a",
-              {
-                staticClass:
-                  "btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill",
-                attrs: { href: "#", "data-toggle": "dropdown" }
-              },
-              [_c("i", { staticClass: "la la-ellipsis-h" })]
-            ),
-            _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _c("i", { staticClass: "la la-edit" }),
-                _vm._v("Edit Details")
-              ])
-            ])
-          ])
-        ])
-      ]
+      "a",
+      {
+        staticClass:
+          "btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-h" })]
     )
   },
   function() {
@@ -18229,6 +18296,10 @@ window.axios = __webpack_require__("./node_modules/axios/index.js");
             path: '/type/:type',
             name: 'deposit.list',
             component: __WEBPACK_IMPORTED_MODULE_2__component_view_vue___default.a
+        }, {
+            path: '/edit/:depositId',
+            name: 'deposit.edit',
+            component: __WEBPACK_IMPORTED_MODULE_3__component_save_vue___default.a
         }]
     }]
 }));

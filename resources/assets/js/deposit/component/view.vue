@@ -76,7 +76,7 @@
                                             </td>
                                             <td data-field="Type" class="m-datatable__cell"><span style="width: 110px;">{{ item.electricity_cost ? item.electricity_cost : 0 }}</span>
                                             </td>
-                                            <td data-field="Actions" class="m-datatable__cell"><span style="overflow: visible; width: 110px;">                      <div class="dropdown ">                         <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown"><i class="la la-ellipsis-h"></i></a><div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="la la-edit"></i>Edit Details</a></div>
+                                            <td data-field="Actions" class="m-datatable__cell"><span style="overflow: visible; width: 110px;">                      <div class="dropdown ">                         <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown"><i class="la la-ellipsis-h"></i></a><div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#" @click="update(item.id)"><i class="la la-edit"></i>Edit Details</a></div>
                                             </div>
                                             </span>
                                             </td>
@@ -182,6 +182,22 @@
 				deposit: [],
 			}
 		},
+        methods: {
+            update(id = null) {
+                if (id) {
+                    return this.$router.push({
+                        'name': 'deposit.edit',
+                        'params': {
+                            'depositId': id,
+                            'type': this.type
+                        }
+                    });
+                }
+                return this.$router.push({
+                    name: 'deposit.create'
+                })
+            }
+        },
 		mounted() {
 
 			const URL = 'http://127.0.0.1:8000/deposit/list';

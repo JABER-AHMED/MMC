@@ -30,7 +30,7 @@ export default new VueRouter({
                    path: '/edit/:mealId',
                    name: 'meal.edit',
                    component: save
-               },
+                },
             ]
         }
     ]

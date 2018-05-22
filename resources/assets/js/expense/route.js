@@ -23,6 +23,11 @@ export default new VueRouter({
                     name: 'expense.list',
                     component: view
                 },
+                {
+                   path: '/edit/:expenseId',
+                   name: 'expense.edit',
+                   component: save
+                },
             ]
         }
     ]

@@ -6,7 +6,7 @@
 					<div class="col-md-5">
 					  <div class="form-group">
 					  	<label>Lunch</label>
-					  	<input class="form-control" type="number" v-model.number="data.day_meal" placeholder="enter your lunch meal">
+					  	<input class="form-control" type="number" v-model.number="data.day_meal"  placeholder="enter your lunch meal">
 					  </div>
 				    </div>
 				</div>
@@ -57,8 +57,27 @@
 
 			        console.log(err.response.data);
 			    })
+			},
+			edit(id) {
+				// this.pleaseWaitLoading();
+				axios.get('http://127.0.0.1:8000/meal/list/' + id)
+				.then((response) => {
+					this.data = response.data.meal;
+	                // this.$loading().close();
+	                
+				})
+				.catch((error) => {
+					console.log(error.response.data);
+					// this.$loading().close();
+				})
 			}
 		},
+		mounted() {
+			if (this.$route.params.mealId) {
+				this.edit(this.$route.params.mealId);
+			}
+			console.log(this.$route.params.mealId);
+		}
 	}
 
 </script>

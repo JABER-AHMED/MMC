@@ -151,7 +151,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 				console.log(err.response.data);
 			});
+		},
+		edit: function edit(id) {
+			var _this2 = this;
+
+			// this.pleaseWaitLoading();
+			axios.get('http://127.0.0.1:8000/meal/list/' + id).then(function (response) {
+				_this2.data = response.data.meal;
+				// this.$loading().close();
+			}).catch(function (error) {
+				console.log(error.response.data);
+				// this.$loading().close();
+			});
 		}
+	},
+	mounted: function mounted() {
+		if (this.$route.params.mealId) {
+			this.edit(this.$route.params.mealId);
+		}
+		console.log(this.$route.params.mealId);
 	}
 });
 

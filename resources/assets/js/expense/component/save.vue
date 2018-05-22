@@ -44,6 +44,10 @@
 			}
 		},
 		mounted () {
+			if (this.$route.params.expenseId) {
+				this.edit(this.$route.params.expenseId);
+			}
+
 			const URL = 'http://127.0.0.1:8000/expense/user/list';
 			axios.get(URL, this.data)
 			.then((response) => {
@@ -68,6 +72,20 @@
 			    .catch((err) => {
 			        console.log(err.response.data);
 			    })
+			},
+			edit(id) {
+				// this.pleaseWaitLoading();
+				axios.get('http://127.0.0.1:8000/expense/list/' + id)
+				.then((response) => {
+					this.data = response.data.expense;
+	                // this.$loading().close();
+	                // console.log(this.user);
+	                
+				})
+				.catch((error) => {
+					console.log(error.response.data);
+					// this.$loading().close();
+				})
 			}
 		}
 	}

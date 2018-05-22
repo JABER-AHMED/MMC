@@ -1739,6 +1739,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		var _this = this;
 
+		if (this.$route.params.expenseId) {
+			this.edit(this.$route.params.expenseId);
+		}
+
 		var URL = 'http://127.0.0.1:8000/expense/user/list';
 		axios.get(URL, this.data).then(function (response) {
 			_this.user = response.data;
@@ -1761,6 +1765,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				});
 			}).catch(function (err) {
 				console.log(err.response.data);
+			});
+		},
+		edit: function edit(id) {
+			var _this3 = this;
+
+			// this.pleaseWaitLoading();
+			axios.get('http://127.0.0.1:8000/expense/list/' + id).then(function (response) {
+				_this3.data = response.data.expense;
+				// this.$loading().close();
+				// console.log(this.user);
+			}).catch(function (error) {
+				console.log(error.response.data);
+				// this.$loading().close();
 			});
 		}
 	}
@@ -1924,6 +1941,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1933,6 +1957,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			expense: []
 		};
+	},
+
+	methods: {
+		update: function update() {
+			var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+			if (id) {
+				return this.$router.push({
+					'name': 'expense.edit',
+					'params': {
+						'expenseId': id,
+						'type': this.type
+					}
+				});
+			}
+			return this.$router.push({
+				name: 'expense.create'
+			});
+		}
 	},
 	mounted: function mounted() {
 		var _this = this;
@@ -1956,7 +1999,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2820,7 +2863,13 @@ var render = function() {
                         staticClass: "m-nav__link nav-link m-tabs__link",
                         class: _vm.$route.path == "/type/list" ? "active" : "",
                         attrs: {
-                          to: { name: "expense.list", params: { type: "list" } }
+                          to: {
+                            name: "expense.list",
+                            params: { type: "list" }
+                          },
+                          "data-toggle": "tab",
+                          role: "tab",
+                          "aria-expanded": "true"
                         }
                       },
                       [
@@ -2849,7 +2898,10 @@ var render = function() {
                           to: {
                             name: "expense.create",
                             params: { type: "save" }
-                          }
+                          },
+                          "data-toggle": "tab",
+                          role: "tab",
+                          "aria-expanded": "true"
                         }
                       },
                       [
@@ -2999,6 +3051,55 @@ var render = function() {
                             _vm._v(_vm._s(item.created_at))
                           ])
                         ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass: "m-datatable__cell",
+                          attrs: { "data-field": "Actions" }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                overflow: "visible",
+                                width: "110px"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "dropdown " }, [
+                                _vm._m(3, true),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "dropdown-menu dropdown-menu-right"
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "dropdown-item",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.update(item.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", { staticClass: "la la-edit" }),
+                                        _vm._v("Edit Details")
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ]
                       )
                     ]
                   )
@@ -3007,7 +3108,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(4)
         ]
       )
     ])
@@ -3138,10 +3239,37 @@ var staticRenderFns = [
               attrs: { "data-field": "Currency" }
             },
             [_c("span", { staticStyle: { width: "100px" } }, [_vm._v("Date")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "m-datatable__cell m-datatable__cell--sort",
+              attrs: { "data-field": "Actions" }
+            },
+            [
+              _c("span", { staticStyle: { width: "110px" } }, [
+                _vm._v("Actions")
+              ])
+            ]
           )
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-h" })]
+    )
   },
   function() {
     var _vm = this
@@ -17653,6 +17781,10 @@ window.axios = __webpack_require__("./node_modules/axios/index.js");
             path: '/type/:type',
             name: 'expense.list',
             component: __WEBPACK_IMPORTED_MODULE_2__component_view_vue___default.a
+        }, {
+            path: '/edit/:expenseId',
+            name: 'expense.edit',
+            component: __WEBPACK_IMPORTED_MODULE_3__component_save_vue___default.a
         }]
     }]
 }));

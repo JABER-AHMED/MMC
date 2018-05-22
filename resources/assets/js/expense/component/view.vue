@@ -46,6 +46,8 @@
                                                 </th>
                                                 <th data-field="Currency" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 100px;">Date</span>
                                                 </th>
+                                                <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="m-datatable__body" style="">
@@ -57,6 +59,11 @@
                                             <td data-field="Currency" class="m-datatable__cell"><span style="width: 100px;">{{ item.expense ? item.expense : 0 }}</span>
                                             </td>
                                             <td data-field="ShipAddress" class="m-datatable__cell"><span style="width: 110px;">{{ item.created_at }}</span>
+                                            </td>
+                                            <td data-field="Actions" class="m-datatable__cell"><span style="overflow: visible; width: 110px;">                      <div class="dropdown ">                         <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown"><i class="la la-ellipsis-h"></i></a><div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item" @click="update(item.id)"><i class="la la-edit"></i>Edit Details</a></div>
+                                            </div>
+                                            </span>
                                             </td>
                                         </tr>
                                </tbody>
@@ -160,6 +167,23 @@
 				expense: [],
 			}
 		},
+        methods: {
+
+            update(id = null) {
+                if (id) {
+                    return this.$router.push({
+                        'name': 'expense.edit',
+                        'params': {
+                            'expenseId': id,
+                            'type': this.type
+                        }
+                    });
+                }
+                return this.$router.push({
+                    name: 'expense.create'
+                })
+            }
+        },
 		mounted() {
 
 			const URL = 'http://127.0.0.1:8000/expense/list';
