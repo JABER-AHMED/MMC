@@ -343,7 +343,6 @@ class ComposerStaticInitc742cac1b6f8445825d14360f8c3a310
         'App\\Models\\Expense\\Traits\\ExpenseRelations' => __DIR__ . '/../..' . '/app/Models/Expense/Traits/ExpenseRelations.php',
         'App\\Models\\Meal\\Meal' => __DIR__ . '/../..' . '/app/Models/Meal/Meal.php',
         'App\\Models\\Meal\\Traits\\MealRelations' => __DIR__ . '/../..' . '/app/Models/Meal/Traits/MealRelations.php',
-        'App\\Post' => __DIR__ . '/../..' . '/app/Post.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

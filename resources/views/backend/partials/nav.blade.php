@@ -56,7 +56,7 @@
                         <li class="m-menu__item">
                             <a class="m-menu__link" href="{{ route('meal.index') }}">
                                 <i class="m-menu__link-icon la la-legal"></i>
-                                <span class="m-menu__link-text">Meals</span>
+                                <span class="m-menu__link-text">Create Meals</span>
                             </a>
                         </li>
                     </ul>

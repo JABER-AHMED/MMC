@@ -1,38 +1,39 @@
 <template>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="card">
-				  <ul class="nav">
-				     <li class="nav-item">
-                        <router-link :to="{name:'my-meal.dashboard'}" :class="$route.name == 'my-meal.dashboard' ?'active' :'' " data-toggle="tab" role="tab" aria-expanded="true">
-	                        <span class="m-nav__link-text">
-	                            My Meals
-	                        </span> 
-                       </router-link>
-                     </li>
-				    <li class="nav-item">
-				    	<router-link :to="{name:'my-meal.save', params: {type: 'save'}}" :class="$route.path == '/type/save' ?'active' :'' " data-toggle="tab" role="tab" aria-expanded="true">
-	                        <span class="m-nav__link-text">
-	                            Create Meal
-	                        </span> 
-                       </router-link>
-				    </li>
-				    <li class="nav-item">
-				    	<router-link :to="{name:'my-meal.list', params: {type: 'list'}}" :class="$route.path == '/type/list' ?'active' :'' " data-toggle="tab" role="tab" aria-expanded="true">
-	                        <span class="m-nav__link-text">
-	                            Meal List
-	                        </span> 
-                       </router-link>
-				    </li>
-				  </ul>
-				  	<div class="tab-content">
-                        <router-view :key="$route.name + ($route.params.type)"></router-view>
+	 <div class="container">
+        <div class="row">
+            <div class="col-sm-12 m-portlet">
+                <div class="m-portlet__body" data-code-preview="true" data-code-html="true" data-code-js="false" role="tablist">
+                    <ul class="nav nav-tabs  m-tabs-line m-tabs-line--primary" role="tablist">
+                        <li class="nav-item m-tabs__item ">
+                            <router-link :to="{name:'meal.list', params: {type: 'list'}}" :class="$route.path == '/type/list' ? 'active' :''" class="m-nav__link nav-link m-tabs__link" data-toggle="tab" role="tab" aria-expanded="true">
+
+                                <span class="m-nav__link-text">
+                                    <i class="la la-remove"></i> 
+                                    Meal List
+                                </span>
+                                
+                            </router-link>
+                        </li>
+                        <span class="nav-item m-tabs__item pull-right">
+                            <router-link :to="{name:'meal.create', params: {type: 'save'}}" :class="$route.path == '/type/save' ?'active' :'' " class="m-nav__link nav-link m-tabs__link" data-toggle="tab" role="tab" aria-expanded="true">
+                                <span class="m-nav__link-text m--font-danger">
+                                    <i class="la la-plus m--font-danger"></i>
+                                    Create New
+                                </span>
+                            </router-link>
+                        </span>
+                    </ul>
+                    <div class="tab-content">
+                        
+                        <router-view :key="$route.name + ($route.params.status)"></router-view>
+                        
                     </div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </template>
 {
 <script>
@@ -42,7 +43,7 @@
 		data () {
 
 			return {
-
+                
 				
 			}
 		}
@@ -50,26 +51,11 @@
 
 </script>
 
-<style scoped>
-	
-	.m-nav__link-text{
-
-		padding-top: 20px;
-		padding-bottom: 20px;
-		padding-right: 20px;
-		padding-left: 20px;
-		font-size: 20px;
-	}
-
-	.nav {
-
-		min-height: 50px;
-		background: #f4f8fa;
-	}
-
-	a:hover {
-
-		text-decoration: none;
-	}
-
+<style>
+    .m-demo .m-demo__preview{
+        border: none !important;
+    }
+    #app{
+        width: 100%;
+    }
 </style>

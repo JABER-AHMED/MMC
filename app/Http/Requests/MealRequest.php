@@ -24,9 +24,7 @@ class MealRequest extends FormRequest
     public function rules()
     {
         return [
-            
-            'day_meal' => 'required',
-            'night_meal' => 'required',
+            'meal' => 'required',
         ];
     }
 }

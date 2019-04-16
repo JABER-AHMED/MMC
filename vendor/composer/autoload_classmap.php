@@ -35,7 +35,6 @@ return array(
     'App\\Models\\Expense\\Traits\\ExpenseRelations' => $baseDir . '/app/Models/Expense/Traits/ExpenseRelations.php',
     'App\\Models\\Meal\\Meal' => $baseDir . '/app/Models/Meal/Meal.php',
     'App\\Models\\Meal\\Traits\\MealRelations' => $baseDir . '/app/Models/Meal/Traits/MealRelations.php',
-    'App\\Post' => $baseDir . '/app/Post.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
