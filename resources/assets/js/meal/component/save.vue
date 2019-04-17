@@ -1,63 +1,41 @@
 <template>
-	<div class="row">
-		<div v-if="!data" v-for="(data, index) in datas">
-			<div class="col-md-6">
-				<div class="form-group m-form__group">
-				    <label for="exampleSelect1">
-				        Select Member
-				    </label>
-				    <select v-model="data.user_id" class="form-control m-input m-input--square" id="exampleSelect1">
-				        <option v-for="item in user" :value="item.id">{{ item.name }}</option>
-				    </select>
+	<div>
+		<div v-for="(data, index) in datas">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group m-form__group">
+					    <label for="exampleSelect1">
+					        Select Member
+					    </label>
+					    <select v-model="data.user_id" class="form-control m-input m-input--square" id="exampleSelect1">
+					        <option v-for="item in user" :value="item.id">{{ item.name }}</option>
+					    </select>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group m-form__group">
-				    <label for="exampleInputEmail1">
-				        Meal
-				    </label>
-				    <input type="number" class="form-control m-input m-input--square" id="exampleInputEmail1" v-model.number="data.meal" aria-describedby="emailHelp" placeholder="Enter meal">
-				    <span class="m-form__help">
-				        We'll never share your data with anyone else.
-				    </span>
+				<div class="col-md-4">
+					<div class="form-group m-form__group">
+					    <label for="exampleInputEmail1">
+					        Meal
+					    </label>
+					    <input type="number" class="form-control m-input m-input--square" id="exampleInputEmail1" v-model.number="data.meal" aria-describedby="emailHelp" placeholder="Enter meal">
+					    <span class="m-form__help">
+					        We'll never share your data with anyone else.
+					    </span>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div v-else>
-			<p>eererer</p>
-			<div class="col-md-6">
-				<div class="form-group m-form__group">
-				    <label for="exampleSelect1">
-				        Select Member
-				    </label>
-				    <select v-model="data.user_id" class="form-control m-input m-input--square" id="exampleSelect1">
-				        <option v-for="item in user" :value="item.id">{{ item.name }}</option>
-				    </select>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group m-form__group">
-				    <label for="exampleInputEmail1">
-				        Meal
-				    </label>
-				    <input type="number" class="form-control m-input m-input--square" id="exampleInputEmail1" v-model.number="data.meal" aria-describedby="emailHelp" placeholder="Enter meal">
-				    <span class="m-form__help">
-				        We'll never share your data with anyone else.
-				    </span>
+				<div class="col-md-4">
+					<div class="form-group m-form__group">
+					    <label for="exampleInputEmail1">
+					     	Date
+					    </label>
+					    <input type="text" class="form-control m-input m-input--square" v-model="data.date" aria-describedby="emailHelp" placeholder="ex: 2019-07-02">
+					</div>
 				</div>
 			</div>
 		</div>
-		<button v-if="!data" class="btn btn-primary" @click="addNew()">Add new</button>
-		<button v-if="!data" class="btn btn-danger" @click="Remove()">Remove</button>
-		<div class="col-md-6">
-			<div class="form-group m-form__group">
-			</div>
-		</div>
-		<div class="col-md-6">
-			<button @click="save()" type="button" class="btn btn-primary">
-				save
-			</button>
-		</div>
+		<button @click="addNew()" type="button" class="btn btn-primary button-design">Add New</button>
+		<button @click="Remove()" type="button" class="btn btn-danger button-design">Remove</button>
+		<button @click="save()" type="button" class="btn btn-success button-save">Save</button>
 	</div>
 </template>
 <script>
@@ -73,6 +51,7 @@
 				datas: [{
 					user_id: '',
 					meal: '',
+					date: ''
 				},
 				]
 			}
@@ -114,6 +93,7 @@
 				let newData = {
 					user_id: '',
 					meal: '',
+					date: ''
 				};
 				this.datas.push(newData);
 			},
@@ -138,6 +118,8 @@
 	}
 </script>
 <style scoped>
-
+	.button-save {
+		margin-left: 15px;
+	}
 </style>
 <style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>

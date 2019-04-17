@@ -17,15 +17,13 @@ class MealController extends Controller
     	$this->request = $request;
     	$this->model = $meal;
     }
-
     public function index()
     {
     	return view('backend.meal.index');
     }
-
     public function getUser()
     {
-    	return User::all();
+    	return User::whereRole(0)->get();
     }
 
     public function save(Request $request)

@@ -161,14 +161,11 @@
 	export default {
 
 		data () {
-
 			return {
-
 				expense: [],
 			}
 		},
         methods: {
-
             update(id = null) {
                 if (id) {
                     return this.$router.push({
@@ -185,7 +182,6 @@
             }
         },
 		mounted() {
-
 			const URL = 'http://127.0.0.1:8000/expense/list';
 			axios.get(URL, this.data)
 			.then((response) => {

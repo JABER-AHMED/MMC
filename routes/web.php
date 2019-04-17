@@ -16,9 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
-
 Route::group([
     // 'namespace' => '\frontend',
     'middleware' => 'auth'
@@ -42,5 +39,9 @@ Route::group([
     include_once 'Backend/expense.php';
     include_once 'Backend/deposit.php';
     include_once 'Backend/meal.php';
-
+});
+Route::group([
+    'middleware' => 'auth'
+], function() {
+    include_once 'Backend/dashboard.php';
 });

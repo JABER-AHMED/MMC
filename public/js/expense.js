@@ -1730,7 +1730,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			user: [],
 			data: {
-
 				expense: '',
 				user_id: ''
 			}
@@ -1742,7 +1741,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		if (this.$route.params.expenseId) {
 			this.edit(this.$route.params.expenseId);
 		}
-
 		var URL = 'http://127.0.0.1:8000/expense/user/list';
 		axios.get(URL, this.data).then(function (response) {
 			_this.user = response.data;
@@ -1952,9 +1950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
-
 		return {
-
 			expense: []
 		};
 	},
@@ -1999,7 +1995,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

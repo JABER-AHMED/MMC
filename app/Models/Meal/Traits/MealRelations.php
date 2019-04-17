@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Models\Meal\Traits;
-
 use App\User;
-
 trait MealRelations
 {
     public function user()

@@ -37,7 +37,6 @@
 
 				user: [],
 				data: {
-
 					expense: '',
 					user_id: '',
 				}
@@ -47,7 +46,6 @@
 			if (this.$route.params.expenseId) {
 				this.edit(this.$route.params.expenseId);
 			}
-
 			const URL = 'http://127.0.0.1:8000/expense/user/list';
 			axios.get(URL, this.data)
 			.then((response) => {
